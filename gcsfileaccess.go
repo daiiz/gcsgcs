@@ -22,7 +22,7 @@ func SaveLocal(filePath string, content []byte) (string, error) {
 }
 
 // ~/gcs_buckets/<bucket>/ にファイルを保存する
-// ディレクトリ構造を維持する
+// GCSでのディレクトリ構造を維持する
 func Download(bucket, filePath string) (string, error) {
     home, _ := homedir.Dir()
 
@@ -78,8 +78,4 @@ func Fetch(bucket, filePath string) ([]byte, error) {
     }
 
     return buf.Bytes(), nil
-}
-
-func Foo () int {
-    return 333
 }
