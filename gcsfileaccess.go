@@ -23,7 +23,7 @@ func SaveLocal(filePath string, content []byte) (string, error) {
 }
 
 // ローカルのファイルをGCSの <bucket>/gcsgcs/<saveFileName> にアップロードする
-func Upload(localFilePath string, saveFileName string, bucket string) (string, error) {
+func Upload(bucket string, localFilePath string, saveFileName string) (string, error) {
     file, err := os.Open(localFilePath)
     if err != nil {
         return "", err
