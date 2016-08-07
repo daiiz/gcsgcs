@@ -2,6 +2,7 @@ package main
 
 import (
     "os"
+    "io/ioutil"
     "strings"
     "path/filepath"
     "bytes"
@@ -19,6 +20,30 @@ func SaveLocal(filePath string, content []byte) (string, error) {
     file.Write(content)
     defer file.Close()
     return filePath, nil
+}
+
+// ローカルのファイルをGCSの <bucket>/gcsgcs/<saveFileName> にアップロードする
+func Upload(localFilePath string, saveFileName string, bucket string) (string, error) {
+    file, err := os.Open(localFilePath)
+    if err != nil {
+        return "", err
+    }
+    defer file.Close()
+
+    // ファイルを一括読み込みして，content []byte を得る
+    content, err := ioutil.ReadFile(localFilePath)
+    if err != nil {
+        return "", err
+    }
+
+    // 読み込んだ内容をGCSにファイルとして保存する
+    e := Put(bucket, saveFileName, content)
+    if e != nil {
+        return "", err
+    }
+
+    gcsPath := "gcs://" + bucket + "/gcsgcs/" + saveFileName
+    return gcsPath, nil
 }
 
 // ~/gcs_buckets/<bucket>/ にファイルを保存する
@@ -55,6 +80,32 @@ func Download(bucket, filePath string) (string, error) {
     }
 
     return savedFilePath, nil
+}
+
+
+func Put(bucket, fileName string, data []byte) (error) {
+    filePath := "gcscs/" + fileName
+    ctx := context.Background()
+    client, err := storage.NewClient(ctx)
+    if err != nil {
+        return err
+    }
+    defer client.Close()
+
+    writer := client.Bucket(bucket).Object(filePath).NewWriter(ctx)
+    defer writer.Close()
+
+    if written, err := writer.Write(data); err != nil {
+        return err
+    } else if written != len(data) {
+        return err
+    }
+
+    if err := writer.Close(); err != nil {
+        return err
+    }
+
+    return nil
 }
 
 

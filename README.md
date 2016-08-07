@@ -9,7 +9,7 @@ $ gcsgcs -do dl -b daiiz-bucket-1 -gf public/blank.png
 
 ## Upload File `up` (Coming Soon!)
 GCSのバケット名`BucketName`内のフォルダ`gcsgcs/`にローカルのファイルをアップロードします．
-（フォルダ`gcsgcs/`は予め作成しておいてください．）
+フォルダ`gcsgcs/`は予め作成しておいてください．
 ```
-$ gcsgcs -do up -b daiiz-bucket-1 -lf ./sample.txt
+$ gcsgcs -do up -lf ./sample.txt -b daiiz-bucket-1 -gf sample.txt
 ```
