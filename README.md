@@ -6,3 +6,6 @@ GCSからファイルを取得したりGCSにファイルをアップロード�
 ```
 $ gcsgcs -do dl -b daiiz-bucket-1 -gf public/blank.png
 ```
+
+## Upload File `up`
+バケット名`BucketName`とバケットをルートとしたファイルパス`GCSfilePath`にローカルのファイルをアップロードします．
