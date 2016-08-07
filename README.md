@@ -7,7 +7,7 @@ Google Cloud Storageからファイルを取得したりGCSにファイルをア
 $ gcsgcs -do dl -b daiiz-bucket-1 -gf public/blank.png
 ```
 
-## Upload File `up` (Coming Soon!)
+## Upload File `up`
 ローカルのファイルを，GCSのバケット名`BucketName`内のフォルダ`gcsgcs/`に`-gf`で指定したファイル名で保存します．
 フォルダ`gcsgcs/`は予め作成しておいてください．
 ```
