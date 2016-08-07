@@ -2,7 +2,7 @@
 Google Cloud Storageからファイルを取得したりGCSにファイルをアップロードしたりするツールです
 
 ## 準備
-* ローカルで実行する場合: gcloudでバケットを管理しているプロジェクトにgcloud auth loginしておく必要がある
+* ローカルで実行する場合: gcloudツールを用いて，バケットを管理しているプロジェクトにgcloud auth loginしておく必要がある
 * GCEのVMで実行する場合: バケットを管理しているプロジェクト内で起動しているVMであれば事前準備は必要ない
 
 ## Download File `dl`
