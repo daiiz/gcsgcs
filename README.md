@@ -1,5 +1,7 @@
 # gcsgcs
 Google Cloud Storageからファイルを取得したりGCSにファイルをアップロードしたりするツールです
+* ローカルで実行する場合: gcloudでバケットを管理しているプロジェクトにgcloud auth loginしておく必要がある
+* GCEのVMで実行する場合: バケットを管理しているプロジェクト内で起動しているVMであれば事前準備は必要ない
 
 ## Download File `dl`
 バケット名`BucketName`とバケットをルートとしたファイルパス`GCSfilePath`を指定して実行します．ダウンロードしたファイルが`~/gcs_buckets/<BucketName>/<GCSfilePath>`に保存されます．
